@@ -13,3 +13,20 @@ let mostPopularFood = [
   'parmesan chicken',
   'buffalo-flavored cauliflower',
 ];
+
+
+const alphabeticalOrder = (arr) => {
+  return [...arr].sort()
+}
+
+const rankList = (arr) => {
+  return arr.map( el => `${el} (${arr.indexOf(el) + 1})`);
+}
+
+const printList = (arr) => {
+  arr.forEach( el => {
+    console.log(el);
+  })
+}
+
+printList(alphabeticalOrder(rankList(mostPopularFood)))
