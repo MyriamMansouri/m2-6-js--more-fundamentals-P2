@@ -17,6 +17,7 @@ const fixList = (arr, first, last) => {
   if (Array.isArray(arr) 
     && first !== undefined
     && last !== undefined) {
+      arr.pop(); 
       arr.unshift(first);
       arr.push(last);
     } 
