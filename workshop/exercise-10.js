@@ -2,30 +2,30 @@
 // -----------
 
 let inputData = {
-  name: 'Will Byers',
+  name: "Will Byers",
   age: 9,
-  status: 'upside down',
-  superpower1: 'can-blink-lights',
+  status: "upside down",
+  superpower1: "can-blink-lights",
   superpower2: null,
-  address1: '123 Whatever street',
-  addressCity: 'Hawkins',
-  addressState: 'Indiana',
-  addressCountry: 'United States',
-  motherName: 'Joyce Byers',
+  address1: "123 Whatever street",
+  addressCity: "Hawkins",
+  addressState: "Indiana",
+  addressCountry: "United States",
+  motherName: "Joyce Byers",
   motherAge: 35,
-  motherStatus: 'worried',
+  motherStatus: "worried",
   motherSuperpower1: null,
-  motherSuperpower1: null,
-  bestFriendName: 'Mike Wheeler',
+  motherSuperpower2: null,
+  bestFriendName: "Mike Wheeler",
   bestFriendAge: 9,
-  bestFriendStatus: 'frenetic',
+  bestFriendStatus: "frenetic",
   bestFriendSuperpower1: null,
-  bestFriendSuperpower1: null,
-  girlfriendName: 'Eleven',
+  bestFriendSuperpower2: null,
+  girlfriendName: "Eleven",
   girlfriendAge: 9,
-  girlfriendStatus: 'angry',
-  girlfriendSuperpower1: 'telepathy',
-  girlfriendSuperpower1: 'multiverse portal sealing',
+  girlfriendStatus: "angry",
+  girlfriendSuperpower1: "telepathy",
+  girlfriendSuperpower2: "multiverse portal sealing",
 };
 
 // We want a function that can transform it from that shape to this shape:
@@ -79,8 +79,98 @@ let inputData = {
 // ✅ ['can-blink-lights']
 // ⛔️ ['can-blink-lights', null]
 
+const superPowers = (power1, power2) => {
+  let powers = [];
+  if (typeof power1 === "string") powers.push(power1);
+  if (typeof power2 === "string") powers.push(power2);
+  return powers;
+};
+
+const objCreation = (
+  name,
+  age,
+  status,
+  street,
+  city,
+  state,
+  country,
+  power1,
+  power2,
+  type
+) => {
+  let obj = {};
+  if (typeof type === "string") obj.type = type;
+  obj.name = name;
+  obj.age = age;
+  obj.status = status;
+  if (typeof street === "string") {
+    obj.address = {
+      streetAddress: street,
+      city: city,
+      state: state,
+      country: country,
+    };
+  }
+  obj.superpowers = superPowers(power1, power2);
+  console.log(type);
+  return obj;
+};
+
 function transformData(data) {
-  // Your code here
+  let obj = objCreation(
+    data.name,
+    data.age,
+    data.status,
+    data.address1,
+    data.addressCity,
+    data.addressState,
+    data.addressCountry,
+    data.superpower1,
+    data.superpower2,
+    null
+  );
+  let mother = objCreation(
+    data.motherName,
+    data.motherAge,
+    data.motherStatus,
+    null,
+    null,
+    null,
+    null,
+    data.motherSuperpower1,
+    data.motherSuperpower2,
+    'mother'
+  );
+  let bestFriend = objCreation(
+    data.bestFriendName,
+    data.bestFriendAge,
+    data.bestFriendStatus,
+    null,
+    null,
+    null,
+    null,
+    data.bestFriendSuperpower1,
+    data.bestFriendSuperpower2,
+    'bestfriend'
+  );
+  let girlfriend = objCreation(
+    data.girlfriendName,
+    data.girlfriendAge,
+    data.girlfriendStatus,
+    null,
+    null,
+    null,
+    null,
+    data.girlfriendSuperpower1,
+    data.girlfriendSuperpower2,
+    'girlfriend'
+  );
+
+
+  obj.relashionships = []
+  obj.relashionships.push(mother, bestFriend, girlfriend)
+
+  return obj;
 }
 
 // `JSON.stringify` is used to "pretty-print" the output, so that it's easy
