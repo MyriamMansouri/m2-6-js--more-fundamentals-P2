@@ -7,37 +7,37 @@
 // Notice that there are duplicates (eg. both Riley and John like "ice-cream").
 
 const favoriteDessertsGroupA = {
-  scott: 'brownies',
-  fred: 'tiramisu',
-  lisa: 'chocolate cake',
-  riley: 'ice-cream',
-  sunny: 'cheese cake',
-  john: 'ice-cream',
-  beth: 'cheese cake',
-  summer: 'ice-cream',
-  morty: 'apple pie',
-  rick: 'brownies',
-  andrew: 'cheese cake',
-  jerry: 'rhubard pie',
-  'jean-luc': 'cheese cake',
-  tiffany: 'waffles',
-  melissa: 'profiteroles',
+  scott: "brownies",
+  fred: "tiramisu",
+  lisa: "chocolate cake",
+  riley: "ice-cream",
+  sunny: "cheese cake",
+  john: "ice-cream",
+  beth: "cheese cake",
+  summer: "ice-cream",
+  morty: "apple pie",
+  rick: "brownies",
+  andrew: "cheese cake",
+  jerry: "rhubard pie",
+  "jean-luc": "cheese cake",
+  tiffany: "waffles",
+  melissa: "profiteroles",
 };
 
 const favouriteDessertsGroupB = {
-  alice: 'pie',
-  betty: 'deep-fried mars bar',
-  colin: 'gummy bears',
-  damien: 'child tears',
-  ellicia: 'panda express',
-  fertrude: 'gummy bears',
-  glinda: 'pie',
-  hethel: 'not applicable',
-  irsula: 'rum cake',
-  judas: 'revenge (served cold)',
-  khloe: 'pie',
-  lyndon: 'easter eggs',
-  minda: 'dessert',
+  alice: "pie",
+  betty: "deep-fried mars bar",
+  colin: "gummy bears",
+  damien: "child tears",
+  ellicia: "panda express",
+  fertrude: "gummy bears",
+  glinda: "pie",
+  hethel: "not applicable",
+  irsula: "rum cake",
+  judas: "revenge (served cold)",
+  khloe: "pie",
+  lyndon: "easter eggs",
+  minda: "dessert",
 };
 
 // Exercise 11-1
@@ -54,11 +54,33 @@ const favouriteDessertsGroupB = {
 // - Second, put them in order
 
 function sortDessertsByPopularity(dessertObject) {
-  // Write code
+  const countDesserts = {};
+
+  // pass desserts and count of desserts to object (easier to count)
+  Object.values(dessertObject).forEach((dessert) => {
+    if (countDesserts[dessert] === undefined) {
+      countDesserts[dessert] = 1;
+    } else {
+      countDesserts[dessert]++;
+    }
+  });
+
+  const countDessertsArr = [];
+
+  // pass count to array (easier to sort)
+  Object.keys(countDesserts).forEach((key) => {
+    countDessertsArr.push([key, countDesserts[key]]);
+  });
+
+  countDessertsArr.sort(function (a, b) {
+    return b[1] - a[1];
+  });
+
+  return countDessertsArr;
 }
 
 console.log(
-  'Popular desserts in Group B:',
+  "Popular desserts in Group B:",
   sortDessertsByPopularity(favouriteDessertsGroupB)
 );
 
@@ -94,10 +116,20 @@ console.log(
 // order, and that's 100% OK).
 
 function groupPeopleByDessert(dessertObject) {
-  // do something
+  const peopleByDesserts = {};
+
+  Object.keys(dessertObject).forEach((name) => {
+    if (peopleByDesserts[dessertObject[name]] === undefined) {
+      peopleByDesserts[dessertObject[name]] = [name];
+    } else {
+      peopleByDesserts[dessertObject[name]].push(name);
+    }
+  });
+
+  return peopleByDesserts;
 }
 
 console.log(
-  'People grouped by dessert:',
+  "People grouped by dessert:",
   groupPeopleByDessert(favouriteDessertsGroupB)
 );
