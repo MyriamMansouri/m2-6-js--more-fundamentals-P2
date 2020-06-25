@@ -112,7 +112,6 @@ const objCreation = (
     };
   }
   obj.superpowers = superPowers(power1, power2);
-  console.log(type);
   return obj;
 };
 
@@ -165,10 +164,7 @@ function transformData(data) {
     data.girlfriendSuperpower2,
     'girlfriend'
   );
-
-
-  obj.relashionships = []
-  obj.relashionships.push(mother, bestFriend, girlfriend)
+  obj.relashionships = [mother, bestFriend, girlfriend]
 
   return obj;
 }
